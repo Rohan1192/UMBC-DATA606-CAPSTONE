@@ -39,6 +39,38 @@ This project analyzes historical air quality and meteorological data from multip
 
 ### Dataset Description
 The dataset contains historical daily air quality and meteorological measurements for multiple European cities.
+Link : https://discomap.eea.europa.eu/App/AQViewer/index.html?fqn=Airquality_Dissem.b2g.Measurements
+## 📘 Data Dictionary
+
+Each row represents a **daily measurement** of air quality and meteorological conditions for a specific **European city**.
+
+| Column Name   | Data Type    | Definition | Units / Format | Example Values | Role in ML |
+|--------------|--------------|------------|----------------|----------------|------------|
+| city         | Categorical  | Name of the city where measurements were recorded | Text | Paris, Berlin, London | Feature |
+| datetime     | Datetime     | Date/time of observation | YYYY-MM-DD (or YYYY-MM-DD HH:MM) | 2021-06-15 | Feature (after feature engineering) |
+| PM2.5        | Numeric      | Fine particulate matter concentration | µg/m³ | 12.4, 35.6 | Target |
+| PM10         | Numeric      | Coarse particulate matter concentration | µg/m³ | 18.2, 52.0 | Target |
+| NO2          | Numeric      | Nitrogen dioxide concentration | µg/m³ | 22.1, 60.3 | Target |
+| O3           | Numeric      | Ozone concentration | µg/m³ | 45.7, 90.2 | Target |
+| CO           | Numeric      | Carbon monoxide concentration | mg/m³ | 0.4, 1.2 | Feature |
+| SO2          | Numeric      | Sulfur dioxide concentration | µg/m³ | 3.1, 15.0 | Feature |
+| temperature  | Numeric      | Air temperature | °C | 12.5, 28.0 | Feature |
+| humidity     | Numeric      | Relative humidity | % | 55, 82 | Feature |
+| wind_speed   | Numeric      | Wind speed | m/s | 1.5, 6.2 | Feature |
+| pressure     | Numeric      | Atmospheric pressure | hPa | 1008, 1023 | Feature |
+
+---
+
+### ✅ Feature Engineering from `datetime` (Derived Columns)
+
+| Derived Column | Data Type | Definition | Example | Role in ML |
+|--------------|----------|------------|---------|------------|
+| year         | Integer  | Year extracted from datetime | 2021 | Feature |
+| month        | Integer  | Month extracted from datetime | 6 | Feature |
+| day          | Integer  | Day of month extracted | 15 | Feature |
+| day_of_week  | Integer  | Day index (0=Mon … 6=Sun) | 2 | Feature |
+| is_weekend   | Boolean  | Weekend indicator | True/False | Feature |
+| season       | Categorical | Season derived from month | Winter/Summer | Feature |
 
 ### Data Size
 - ~1,048,576 records  
