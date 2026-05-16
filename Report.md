@@ -2,7 +2,7 @@
 ### A Multi-Output Machine Learning Approach
 **UMBC DATA606 – Data Science Capstone**
 
-**Author:** Sai Abhilash  
+**Author:** RAMIREDDY ROHAN REDDY 
 **Instructor:** Dr. Chaojie (Jay) Wang  
 **University:** University of Maryland, Baltimore County  
 
