@@ -2,7 +2,7 @@
 ### A Multi-Output Machine Learning Approach
 **UMBC DATA606 – Data Science Capstone**
 
-**Author:**   RAMIREDDY ROHAN REDDY  
+**Author:** Sai Abhilash  
 **Instructor:** Dr. Chaojie (Jay) Wang  
 **University:** University of Maryland, Baltimore County  
 
@@ -10,48 +10,40 @@
 
 ## 📌 Project Overview
 
-Air pollution is one of the most critical environmental and public health challenges worldwide. Pollutants such as **PM2.5, PM10, NO₂, and O₃** significantly impact air quality and are associated with respiratory diseases, cardiovascular problems, and environmental degradation.
+Air pollution is one of the major environmental challenges affecting both public health and environmental sustainability. Pollutants such as **PM2.5, PM10, NO₂, and O₃** significantly affect air quality and are associated with respiratory diseases and environmental degradation.
 
-This project develops a machine learning framework for predicting pollutant concentrations across European cities using historical air quality and meteorological data. A **multi-output regression approach** is used to predict multiple pollutants simultaneously.
+This project develops a machine learning framework for predicting pollutant concentrations across European cities using historical air quality and meteorological data. Multiple machine learning algorithms are implemented and compared under a **multi-output regression framework**.
 
-The project includes:
+The project workflow includes:
 
-- Data preprocessing
-- Feature engineering
-- Exploratory Data Analysis (EDA)
-- Machine Learning modeling
-- Model evaluation
-- Air quality forecasting
+✔ Data preprocessing  
+✔ Feature engineering  
+✔ Exploratory Data Analysis (EDA)  
+✔ Machine learning modeling  
+✔ Performance evaluation  
+✔ Interactive prediction application  
 
 ---
 
 ## 🎯 Objectives
 
-The primary objectives of this project are:
-
-✔ Predict PM2.5, PM10, NO₂, and O₃ levels simultaneously  
-
-✔ Identify important weather factors affecting pollution  
-
-✔ Analyze seasonal and city-wise pollution trends  
-
-✔ Compare multiple machine learning models  
-
-✔ Build an air quality forecasting framework  
+- Predict **PM2.5, PM10, NO₂, and O₃** simultaneously
+- Identify important weather factors affecting pollution
+- Analyze seasonal pollution patterns
+- Compare machine learning algorithms
+- Develop an air quality forecasting framework
 
 ---
 
 ## 🔍 Research Questions
 
-This project aims to answer the following questions:
+1. Can pollutant concentrations be accurately predicted using weather and historical pollution data?
 
-1. Can pollutant levels be accurately predicted using historical weather and air quality data?
+2. Which environmental variables significantly influence pollution levels?
 
-2. Which environmental variables most influence pollution levels?
+3. How does pollution vary across different cities?
 
-3. How does air pollution vary across cities?
-
-4. Do seasonal changes significantly impact pollutant concentrations?
+4. Do seasonal patterns affect pollutant concentrations?
 
 ---
 
@@ -61,43 +53,42 @@ This project aims to answer the following questions:
 
 European Environment Agency (EEA)
 
-Dataset Link:
-
 https://discomap.eea.europa.eu/App/AQViewer/index.html?fqn=Airquality_Dissem.b2g.Measurements
-
----
 
 ### Dataset Summary
 
 | Metric | Value |
 |----------|--------|
-| Total Records | 1,048,576 |
-| Total Columns | 24 |
+| Records | 1,048,576 |
+| Columns | 24 |
 | Date Range | 2000–2010 |
-| Data Size | ~400 MB |
-| Observation Type | Daily measurements |
+| Dataset Size | ~400 MB |
+| Observation Type | Daily Measurements |
 
 ---
 
-## 📘 Data Dictionary
+## 📘 Features Used
 
-### 🎯 Target Variables
+### Target Variables
 
-- PM2.5 → Fine particulate matter
-- PM10 → Coarse particulate matter
-- NO₂ → Nitrogen dioxide
-- O₃ → Ozone
+- PM2.5
+- PM10
+- NO₂
+- O₃
 
-### 📌 Feature Variables
+### Input Features
 
-- City
-- Datetime
 - Temperature
-- Humidity
+- Relative Humidity
 - Wind Speed
 - Pressure
 - CO
 - SO₂
+- Year
+- Month
+- Day
+- Day of Week
+- Weekend Indicator
 
 ---
 
@@ -105,32 +96,19 @@ https://discomap.eea.europa.eu/App/AQViewer/index.html?fqn=Airquality_Dissem.b2g
 
 The following preprocessing techniques were applied:
 
-### Missing Value Handling
+- Missing value handling
+- Duplicate removal
+- Date conversion
+- Feature engineering
+- Feature scaling
+- Outlier treatment
 
-Missing values identified:
+### Missing Values
 
-| Column | Missing Values |
-|----------|----------------|
+| Variable | Missing Values |
+|-----------|----------------|
 | CO_AQI | 524,224 |
 | SO2_AQI | 524,487 |
-| Other Numeric Features | ≤1 |
-
-Techniques used:
-
-- Median imputation
-- Mode imputation
-- Null value removal where necessary
-
----
-
-### Data Cleaning
-
-Data cleaning operations:
-
-- Removed unnecessary columns
-- Standardized column names
-- Converted dates into datetime format
-- Removed duplicate records
 
 Duplicate rows removed:
 
@@ -140,7 +118,7 @@ Duplicate rows removed:
 
 ## ⚙️ Feature Engineering
 
-Features extracted from datetime:
+The datetime field was transformed into:
 
 - Year
 - Month
@@ -149,10 +127,10 @@ Features extracted from datetime:
 - Weekend Indicator
 - Season
 
-### Season Categories
+Season categories:
 
 | Months | Season |
-|----------|----------|
+|----------|---------|
 | Dec–Feb | Winter |
 | Mar–May | Spring |
 | Jun–Aug | Summer |
@@ -160,81 +138,29 @@ Features extracted from datetime:
 
 ---
 
-## 📊 Exploratory Data Analysis (EDA)
+## 📊 Exploratory Data Analysis
 
-EDA techniques performed:
+EDA was performed to understand data patterns and variable relationships.
 
-### Distribution Analysis
+### Correlation Heatmap
 
-Visualizations:
+The heatmap shows relationships among pollutants and environmental variables.
 
-- Histograms
-- Boxplots
-- Density plots
+<img width="1018" height="791" alt="image" src="https://github.com/user-attachments/assets/422e63fc-098e-4894-999c-2dfa67b1accb" />
 
-Purpose:
 
-- Understand data distribution
-- Detect skewness
-- Identify outliers
+**Observations:**
 
----
-
-### Correlation Analysis
-
-Top correlations with O₃ AQI:
-
-| Variable | Correlation |
-|------------|-------------|
-| O3_Mean | 0.77 |
-| SO2_AQI | 0.08 |
-| NO2_AQI | 0.06 |
-| SO2_Mean | 0.03 |
-| CO_AQI | -0.13 |
-
-Observations:
-
-- O3_Mean had the strongest relationship with O3_AQI
-- CO_AQI showed slight negative correlation
-
----
-
-### Outlier Detection
-
-| Variable | Outliers |
-|------------|-----------|
-| SO2_Mean | 69,125 |
-| O3_AQI | 67,264 |
-| CO_Mean | 56,414 |
-| SO2_AQI | 45,461 |
-| CO_AQI | 27,753 |
-| NO2_Mean | 27,190 |
-| NO2_AQI | 16,250 |
-| O3_Mean | 4,584 |
-
----
-
-## 📈 Key Findings
-
-Key observations obtained from analysis:
-
-- Dataset contains over **1 million records**
-- Missing values are concentrated in **CO_AQI and SO2_AQI**
-- Ozone levels show strong seasonal patterns
-- Pollution variables exhibit right-skewed distributions
-- Southwestern cities displayed elevated ozone values
-
-Highest average O₃ cities:
-
-- Capitan
-- Boulder City
-- Ponca City
+- PM10 and PM2.5 exhibit strong positive correlation
+- Temperature and Dewpoint Temperature show high correlation
+- Relative Humidity demonstrates negative correlation with temperature
+- Weather variables influence pollutant behavior
 
 ---
 
 ## 🤖 Machine Learning Models
 
-Models implemented:
+The following models were implemented:
 
 ### Linear Regression
 
@@ -244,8 +170,7 @@ Purpose:
 
 Advantages:
 
-- Simple
-- Fast training
+- Fast computation
 - Easy interpretation
 
 ---
@@ -258,41 +183,79 @@ Purpose:
 
 Advantages:
 
-- Robust performance
+- Better prediction accuracy
 - Handles large datasets
-- Provides feature importance
 
 ---
 
-### Multi-Output Regression
+### XGBoost
 
-Predicted pollutants:
+Purpose:
 
-- PM2.5
-- PM10
-- NO₂
-- O₃
+- Improve prediction performance
+
+Advantages:
+
+- Strong predictive capability
+- Reduces overfitting
 
 ---
 
-## 📈 Model Evaluation Metrics
+## 📈 Model Performance Comparison
 
-Performance metrics used:
+Performance metrics:
 
-### Mean Absolute Error (MAE)
+- R² Score
+- MAE
+- RMSE
 
-Measures average prediction error.
+<img width="1189" height="590" alt="image" src="https://github.com/user-attachments/assets/027fb840-7f8e-42b4-962f-3f83a36405ee" />
 
-### Root Mean Square Error (RMSE)
 
-Measures prediction deviation.
+### Results
 
-### R² Score
+| Model | R² Score | MAE | RMSE |
+|---------|-----------|------|-------|
+| Linear Regression | ~0.10 | 8.4 | 10.5 |
+| Random Forest | ~0.50 | 5.6 | 7.9 |
+| XGBoost | ~0.52 | 5.8 | 7.7 |
 
-Measures model fit:
+### Key Findings
 
-- 0 → Poor fit
-- 1 → Perfect fit
+✔ Linear Regression showed weak prediction capability
+
+✔ Random Forest improved performance significantly
+
+✔ XGBoost achieved the best prediction performance
+
+---
+
+## 🌐 Air Quality Prediction Application
+
+An interactive web application was developed for real-time predictions.
+
+### Application Interface
+
+<img width="1919" height="885" alt="image" src="https://github.com/user-attachments/assets/31e32f40-667f-4103-80d2-f855a4fae9c5" />
+
+
+### Features
+
+Users can provide:
+
+- Temperature
+- Relative Humidity
+- Year
+- Month
+- Day
+- Day of Week
+- Weekend Indicator
+
+The application dynamically displays:
+
+- Input summary
+- Weather information
+- Predicted pollution values
 
 ---
 
@@ -301,10 +264,11 @@ Measures model fit:
 - Python
 - Pandas
 - NumPy
-- Matplotlib
-- Seaborn
 - Scikit-Learn
 - XGBoost
+- Matplotlib
+- Seaborn
+- Streamlit
 - Jupyter Notebook
 
 ---
@@ -321,12 +285,13 @@ Air-Quality-Prediction/
 ├── notebooks/
 │   ├── Final.ipynb
 │
+├── images/
+│   ├── correlation_heatmap.png
+│   ├── model_comparison.png
+│   ├── air_quality_app.png
+│
 ├── models/
 │   ├── air_quality_model.pkl
-│
-├── images/
-│   ├── heatmap.png
-│   ├── pollution_trends.png
 │
 ├── README.md
 │
@@ -340,30 +305,15 @@ Air-Quality-Prediction/
 Future enhancements include:
 
 - Real-time API integration
-- LSTM-based forecasting
-- Streamlit dashboard
-- Interactive geospatial visualization
-- Real-time pollution prediction system
+- LSTM-based prediction
+- Streamlit cloud deployment
+- Geospatial visualization
+- Mobile application development
 
 ---
 
-## 📚 References
+## ⭐ Conclusion
 
-European Environment Agency Dataset
+This project demonstrates how machine learning techniques can be used to predict air quality levels using historical environmental data. Results show that weather and environmental variables strongly affect pollution concentrations.
 
-https://discomap.eea.europa.eu/App/AQViewer/index.html?fqn=Airquality_Dissem.b2g.Measurements
-
-Python Libraries:
-
-- Pandas
-- NumPy
-- Scikit-learn
-- Matplotlib
-- Seaborn
-- XGBoost
-
----
-
-## ⭐ Project Outcome
-
-This project demonstrates how machine learning can be used to analyze environmental data and predict pollution levels effectively. The framework provides valuable insights that can help policymakers, researchers, and environmental agencies improve air quality monitoring and public health initiatives.
+Among the evaluated models, **XGBoost achieved the best overall prediction performance**, making it suitable for future real-time air quality forecasting systems.
